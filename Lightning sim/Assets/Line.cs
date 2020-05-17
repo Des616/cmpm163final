@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Line : MonoBehaviour
 {
-    protected LineRenderer line;
-    protected Vector3 Position;
-    
+
+	public Vector3 yOrigin;
+
+    // Start is called before the first frame update
     void Start()
     {
-        line = GetComponent<LineRenderer>();
+        transform.localPosition = yOrigin;
+        Debug.Log(yOrigin);
     }
 
     // Update is called once per frame
