@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +15,7 @@ public class Line : MonoBehaviour
     protected LineRenderer lineRenderer;
     private float seconds;
     private int count =0;
+    public Material zap;
 
 
     void Start()
@@ -25,15 +26,18 @@ public class Line : MonoBehaviour
         lineRenderer.widthMultiplier = 0.2f;
    //     Random.InitState(42);
         seconds = 0.0f;
-
-        // A simple 2 color gradient with a fixed alpha of 1.0f.
+		        // A simple 2 color gradient with a fixed alpha of 1.0f.
         float alpha = 1.0f;
-        Gradient gradient = new Gradient();
+       Gradient gradient = new Gradient();
         gradient.SetKeys(
             new GradientColorKey[] { new GradientColorKey(c1, 0.0f), new GradientColorKey(c2, 1.0f) },
             new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
         );
-        lineRenderer.colorGradient = gradient; //set gradient
+        lineRenderer.colorGradient = gradient; //set gradient*/
+       print(lineRenderer);
+		       lineRenderer.material= zap;
+
+
     
         source = GameObject.Find("LightningSource");  // set the source of the lightning to the source object
         startLocation = source.transform.position;  //save the startLocation for the lightning bolt
@@ -43,10 +47,7 @@ public class Line : MonoBehaviour
         currentPos = startLocation; // this saves the current position to our startLocation initially;
         generatePositions(currentPos);
         lineRenderer.positionCount = positions.Count;
-        for (int i = 0; i < lineRenderer.positionCount; i++)
-        {
-        	lineRenderer.SetPosition(i, positions[i]);
-        }
+        updateLineRenderer();
         
 
 
@@ -61,13 +62,13 @@ public class Line : MonoBehaviour
        	
     	//print(Time.deltaTime);
 		seconds += Time.deltaTime;
-    	if(seconds>=2.0){
+    	/*if(seconds>=2.0){
     		count ++;
-    		print("5s have passed " + count);
+    		print("2s have passed " + count);
     		seconds = 0;
     		generatePositions(startLocation);
     		updateLineRenderer();
-    	}
+    	}*/
      	
     }
 
@@ -75,10 +76,17 @@ public class Line : MonoBehaviour
     {
     	//Vector3 newLocation;
     	positions.Clear();
+    	int pos = (int)Random.Range(10.0f,18.0f);
+    	pos = 2;
+    	lineSegments = pos;
+    	    	print(pos);
 
-    	 for( int i = 0; i <= lineSegments; i ++){
+    	 for( int i = 0; i <= pos; i ++){
     	   float locX = Random.Range(-1.0f,1.0f);
-           positions.Add(currentPos = new Vector3(currentPos.x + locX,currentPos.y -lengthOfSegment,currentPos.z));
+    	   
+    	   	      
+           		positions.Add(currentPos = new Vector3(currentPos.x - locX,currentPos.y -lengthOfSegment,currentPos.z));
+           	
 
 
         }
@@ -86,8 +94,10 @@ public class Line : MonoBehaviour
     }
 
     void updateLineRenderer(){
+    	lineRenderer.positionCount=lineSegments;
     	lineRenderer.SetPosition(0, startLocation);
-    	for (int i = 1; i <= lineSegments; i++)
+    	for (int i = 1; i < lineSegments; i++)
+
         {
         	lineRenderer.SetPosition(i, positions[i-1]);
         }
