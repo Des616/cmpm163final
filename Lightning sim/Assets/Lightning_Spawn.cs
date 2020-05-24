@@ -15,7 +15,7 @@ public class Lightning_Spawn : MonoBehaviour
   //      sourcePosition= source.transform.position;
    	while(true){
    		Instantiate(lightning,sourcePosition,Quaternion.identity);
-  		Instantiate(lightning,sourcePosition,Quaternion.identity);
+  	//	Instantiate(lightning,sourcePosition,Quaternion.identity);
  	//	Instantiate(lightning,sourcePosition,Quaternion.identity);
  		yield return null;
   		
