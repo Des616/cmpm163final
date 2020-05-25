@@ -6,7 +6,8 @@ public class Lightning : MonoBehaviour
 {
    private LineRenderer lineRenderer;
 
-   private int numSegs= 12;
+   
+   public int numSegs= 12;
 
    private Color color = Color.white;
 
@@ -23,20 +24,23 @@ public class Lightning : MonoBehaviour
     {
     	lineRenderer = GetComponent<LineRenderer>();
     	maxDif = 1.5f;
-
+    	print("transform test" + lineRenderer.transform);
     	lineRenderer.positionCount = numSegs;
 
     	source = GameObject.Find("LightningSource");  // set the source of the lightning to the source object
         sourcePosition= source.transform.position;
         currentPos = sourcePosition;
      //   print(sourcePosition);
-
+        			float test = Random.value;
+        
         
 
     	for(int i = 1; i < numSegs ; ++i){
     		float locX = Random.Range(-1.3f,1.3f);
     		lineRenderer.SetPosition(i,currentPos = new Vector3(currentPos.x - locX,currentPos.y - Random.Range(1.0f,2.0f),currentPos.z - Random.Range(-1.0f,1.0f)));
-    	}
+			
+		}
+    	
     	lineRenderer.SetPosition(0,sourcePosition);
     	
         
@@ -47,7 +51,7 @@ public class Lightning : MonoBehaviour
 
     {
 	
-	    	color.a -= 2f * Time.deltaTime;
+	    	color.a -= 1f * Time.deltaTime;
       lineRenderer.SetColors(color,color);
     	if(color.a <= 0f && this.gameObject){
     		Destroy(this.gameObject);
