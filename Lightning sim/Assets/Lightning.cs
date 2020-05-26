@@ -31,17 +31,17 @@ public class Lightning : MonoBehaviour
         sourcePosition= source.transform.position;
         currentPos = sourcePosition;
      //   print(sourcePosition);
-        			float test = Random.value;
         
-        
+        //generate the line segments in the line
+       
 
-    	for(int i = 1; i < numSegs ; ++i){
-    		float locX = Random.Range(-1.3f,1.3f);
+        for(int i = 1; i < numSegs; ++i){
+    		float locX = Random.Range(-1.6f,1.6f);
     		lineRenderer.SetPosition(i,currentPos = new Vector3(currentPos.x - locX,currentPos.y - Random.Range(1.0f,2.0f),currentPos.z - Random.Range(-1.0f,1.0f)));
 			
 		}
     	
-    	lineRenderer.SetPosition(0,sourcePosition);
+    	lineRenderer.SetPosition(0,sourcePosition); //set initial position to the position of the transform of the lightning source
     	
         
     }
@@ -51,7 +51,7 @@ public class Lightning : MonoBehaviour
 
     {
 	
-	    	color.a -= 1f * Time.deltaTime;
+      color.a -= 1.5f * Time.deltaTime;
       lineRenderer.SetColors(color,color);
     	if(color.a <= 0f && this.gameObject){
     		Destroy(this.gameObject);

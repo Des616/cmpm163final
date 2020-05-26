@@ -29,8 +29,7 @@ public class Lightning_Spawn : MonoBehaviour
     		for(int i = 0; i < numBolts; i++){
     			Instantiate(lightning,sourcePosition,Quaternion.identity);
   			}
-    		print("2s ");
-    	//updateLineRenderer();
+    		
     	}
    }
 }
