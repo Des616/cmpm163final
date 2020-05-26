@@ -6,7 +6,8 @@ public class Lightning : MonoBehaviour
 {
    private LineRenderer lineRenderer;
 
-   private int numSegs= 12;
+   
+   public int numSegs= 12;
 
    private Color color = Color.white;
 
@@ -16,27 +17,31 @@ public class Lightning : MonoBehaviour
 
    private Vector3 currentPos; //where we are currently
 
-
+   private float maxDif; //holds 1/2 range of values that vertex can change from point to point
 
 
     void Start()
     {
     	lineRenderer = GetComponent<LineRenderer>();
-
+    	maxDif = 1.5f;
+    	print("transform test" + lineRenderer.transform);
     	lineRenderer.positionCount = numSegs;
 
     	source = GameObject.Find("LightningSource");  // set the source of the lightning to the source object
         sourcePosition= source.transform.position;
         currentPos = sourcePosition;
      //   print(sourcePosition);
-
         
+        //generate the line segments in the line
+       
 
-    	for(int i = 1; i < numSegs ; ++i){
-    		float locX = Random.Range(-1.0f,1.0f);
+        for(int i = 1; i < numSegs; ++i){
+    		float locX = Random.Range(-1.6f,1.6f);
     		lineRenderer.SetPosition(i,currentPos = new Vector3(currentPos.x - locX,currentPos.y - Random.Range(1.0f,2.0f),currentPos.z - Random.Range(-1.0f,1.0f)));
-    	}
-    	lineRenderer.SetPosition(0,sourcePosition);
+			
+		}
+    	
+    	lineRenderer.SetPosition(0,sourcePosition); //set initial position to the position of the transform of the lightning source
     	
         
     }
@@ -46,7 +51,7 @@ public class Lightning : MonoBehaviour
 
     {
 	
-	    	color.a -= 10f * Time.deltaTime;
+      color.a -= 1.5f * Time.deltaTime;
       lineRenderer.SetColors(color,color);
     	if(color.a <= 0f && this.gameObject){
     		Destroy(this.gameObject);
