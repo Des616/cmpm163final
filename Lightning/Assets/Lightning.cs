@@ -27,7 +27,7 @@ public class Lightning : MonoBehaviour
     	print("transform test" + lineRenderer.transform);
     	lineRenderer.positionCount = numSegs;
 
-    	source = GameObject.Find("LightningSource");  // set the source of the lightning to the source object
+    	source = this.transform.parent.gameObject;  // set the source of the lightning to the source object
         sourcePosition= source.transform.position;
         currentPos = sourcePosition;
      //   print(sourcePosition);

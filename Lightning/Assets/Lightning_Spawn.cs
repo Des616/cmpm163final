@@ -35,7 +35,7 @@ public class Lightning_Spawn : MonoBehaviour
         transform.position=movementTranslation;
     		seconds = 0;
     		for(int i = 0; i < numBolts; i++){
-    			Instantiate(lightning,sourcePosition,Quaternion.identity);
+    			Instantiate(lightning,sourcePosition,Quaternion.identity,this.transform);
   			}
     		
     	}
