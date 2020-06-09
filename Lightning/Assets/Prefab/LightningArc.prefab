@@ -168,4 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a8853b99b511c49a9713bdc8a49929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSegs: 12
+  numSegs: 49
