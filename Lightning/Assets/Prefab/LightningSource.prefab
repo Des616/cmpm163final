@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightning: {fileID: 2036089571276868880, guid: 00e1f77a32d167f41b82d7ce6cdc3d78,
     type: 3}
-  numBolts: 10
+  numBolts: 9
   timeBetween: 2.52
